@@ -446,53 +446,6 @@ body {
     .service-cards {
         grid-template-columns: 1fr;
     }
-
-    .service-card {
-        padding: 20px;
-    }
-
-    .description-container {
-        position: relative;
-        margin: 10px 0;
-    }
-
-    .service-description {
-        display: none;
-        margin: 15px 0;
-        padding-top: 15px;
-        border-top: 1px solid #eee;
-    }
-
-    .service-description.active {
-        display: block;
-    }
-
-    .see-description {
-        background: none;
-        border: none;
-        color: #F49C00;
-        font-size: 14px;
-        font-weight: 500;
-        padding: 0;
-        cursor: pointer;
-        font-family: 'Montserrat', sans-serif;
-    }
-
-    .see-description.active {
-        margin-bottom: 10px;
-    }
-
-    .see-description::after {
-        content: '▼';
-        display: inline-block;
-        margin-left: 5px;
-        font-size: 10px;
-        transition: transform 0.3s ease;
-    }
-
-    .see-description.active::after {
-        transform: rotate(180deg);
-    }
 }
 
 .our-work {
