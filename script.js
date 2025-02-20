@@ -115,4 +115,16 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModalFunc();
         });
     }
+
+    // Handle service description expansion
+    const seeDescriptionButtons = document.querySelectorAll('.see-description');
+    
+    seeDescriptionButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const description = button.nextElementSibling;
+            button.classList.toggle('active');
+            description.classList.toggle('active');
+            button.textContent = button.classList.contains('active') ? 'Hide description' : 'See description';
+        });
+    });
 }); 
