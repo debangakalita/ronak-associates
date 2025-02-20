@@ -17,35 +17,42 @@ menuLinks.forEach(link => {
         hamburger.classList.remove('active');
         mobileMenu.classList.remove('active');
         document.body.style.overflow = 'auto';
+        // Remove active class from all links in mobile view
+        if (window.innerWidth <= 768) {
+            menuLinks.forEach(l => l.classList.remove('active'));
+        }
     });
 });
 
 // Add scroll event listener
 window.addEventListener('scroll', () => {
-    let current = '';
-    const scrollPosition = window.pageYOffset + 150;
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
+    // Only run this for screens wider than 768px
+    if (window.innerWidth > 768) {
+        let current = '';
+        const scrollPosition = window.pageYOffset + 150;
         
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            current = section.getAttribute('id');
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
             
-            if (current === 'services-section') {
-                current = 'services-section';
-            } else if (scrollPosition >= document.getElementById('about-section').offsetTop) {
-                current = 'about-section';
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+                
+                if (current === 'services-section') {
+                    current = 'services-section';
+                } else if (scrollPosition >= document.getElementById('about-section').offsetTop) {
+                    current = 'about-section';
+                }
             }
-        }
-    });
+        });
 
-    menuLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
+        menuLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    }
 });
 
 // Modal functionality
