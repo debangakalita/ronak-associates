@@ -12,6 +12,11 @@
             <div class="logo">
                 <img src="images/logo.png" alt="Logo">
             </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <div class="nav-links">
                 <a href="#home" class="active">HOME</a>
                 <a href="#services-section">SERVICES</a>
@@ -408,6 +413,25 @@
     </main>
 
     <script>
+        // Hamburger menu functionality
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'auto';
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
         // Get all sections
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-links a');

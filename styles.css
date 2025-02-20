@@ -87,6 +87,7 @@ body {
     display: flex;
     gap: 20px;
     z-index: 1;
+    align-items: center;
 }
 
 .btn-appointment, .btn-contact {
@@ -184,7 +185,13 @@ body {
     display: block;
 }
 
-/* Responsive Design */
+/* Update media queries */
+@media (max-width: 1200px) {
+    .btn-appointment {
+        display: none;
+    }
+}
+
 @media (max-width: 1024px) {
     .nav-container {
         padding: 0 20px;
@@ -197,28 +204,43 @@ body {
 
 @media (max-width: 768px) {
     .nav-links {
-        display: none;
+        position: fixed;
+        top: 68px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 68px);
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 40px;
+        transition: left 0.3s ease;
+        display: flex;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-container {
+        justify-content: space-between;
     }
     
     .nav-buttons {
-        gap: 10px;
+        order: 2;
     }
     
-    .btn-appointment, .btn-contact {
-        padding: 8px 17px;
-        font-size: 12px;
+    .logo {
+        order: 1;
     }
     
-    .hero h1 {
-        font-size: 2rem;
+    .nav-links a {
+        margin: 15px 0;
+        font-size: 18px;
     }
     
-    .hero p {
-        font-size: 1rem;
-    }
-    
-    .hero-image {
-        height: auto;
+    .logo img {
+        height: 20px;
     }
 }
 
@@ -948,4 +970,66 @@ body {
 
 .modal-content {
     animation: modalFadeIn 0.3s ease-out;
+}
+
+/* Hamburger menu styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    margin-left: 20px;
+}
+
+.hamburger span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #0A2647;
+    transition: all 0.3s ease;
+}
+
+/* Active state for hamburger */
+.hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 68px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 68px);
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 40px;
+        transition: left 0.3s ease;
+    }
+    
+    .nav-links.active {
+        left: 0;
+    }
+    
+    .nav-links a {
+        margin: 15px 0;
+        font-size: 18px;
+    }
 } 
