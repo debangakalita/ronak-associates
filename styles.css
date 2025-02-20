@@ -57,7 +57,7 @@ body {
     color: #C3C3C3;
     font-weight: 500;
     font-size: 14px;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
     letter-spacing: 1px;
     position: relative;
     padding-bottom: 4px;
@@ -89,26 +89,26 @@ body {
     z-index: 1;
 }
 
-.btn-appointment {
+.btn-appointment, .btn-contact {
     padding: 8px 17px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.btn-appointment {
     border: 1px solid #EE0E00;
     background: transparent;
     color: #EE0E00;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: 'Montserrat', sans-serif;
 }
 
 .btn-contact {
-    padding: 8px 17px;
     border: none;
     background: #EE0E00;
     color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: 'Montserrat', sans-serif;
 }
 
 .btn-appointment:hover {
@@ -162,6 +162,8 @@ body {
     transition: all 0.3s ease;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .hero-cta:hover {
@@ -880,4 +882,70 @@ body {
     .footer {
         padding: 40px 0 30px;
     }
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 80px auto;
+    padding: 40px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: #000;
+}
+
+.modal-content h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+.appointment-form {
+    width: 100%;
+}
+
+/* Add animation */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-content {
+    animation: modalFadeIn 0.3s ease-out;
 } 

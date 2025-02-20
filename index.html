@@ -14,28 +14,29 @@
             </div>
             <div class="nav-links">
                 <a href="#home" class="active">HOME</a>
-                <a href="#services">SERVICES</a>
-                <a href="#about">ABOUT US</a>
+                <a href="#services-section">SERVICES</a>
+                <a href="#work-section">OUR WORK</a>
+                <a href="#about-section">ABOUT US</a>
             </div>
             <div class="nav-buttons">
                 <button class="btn-appointment">Book Appointment</button>
-                <button class="btn-contact">Contact Us</button>
+                <a href="#contact-section" class="btn-contact">Contact Us</a>
             </div>
         </div>
     </nav>
 
-    <section class="hero">
+    <section id="home" class="hero">
         <div class="hero-content">
             <h1>We assist with certification consultancy and plant set up across North East.</h1>
             <p>From BIS and FSSAI certifications to food factory setups, we offer complete consultancy services across the Northeast</p>
-            <button class="hero-cta">Check Our Services</button>
+            <a href="#services-section" class="hero-cta">Check Our Services</a>
         </div>
         <div class="hero-image">
             <img src="images/heroimage.png" alt="Hero Image">
         </div>
     </section>
 
-    <section class="services">
+    <section id="services-section" class="services">
         <div class="services-container">
             <h2>Services We Offer</h2>
             <div class="services-categories">
@@ -215,7 +216,7 @@
         </div>
     </section>
 
-    <section class="our-work">
+    <section id="work-section" class="our-work">
         <div class="work-container">
             <h2>Our Work</h2>
             <div class="work-grid">
@@ -255,7 +256,7 @@
         </div>
     </section>
 
-    <section class="about">
+    <section id="about-section" class="about">
         <div class="about-container">
             <h2>About Us</h2>
             <p class="about-description">
@@ -324,7 +325,7 @@
         </div>
     </section>
 
-    <section class="contact">
+    <section id="contact-section" class="contact">
         <div class="contact-container">
             <h2>Contact Us</h2>
             <div class="contact-content">
@@ -405,5 +406,123 @@
     <main>
         <!-- Other content sections will go here -->
     </main>
+
+    <script>
+        // Get all sections
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        // Add scroll event listener
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const scrollPosition = window.pageYOffset + 150;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                    
+                    if (current === 'services-section') {
+                        current = 'services-section';
+                    } else if (scrollPosition >= document.getElementById('about-section').offsetTop) {
+                        current = 'about-section';
+                    }
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Modal functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('appointment-modal');
+            const appointmentBtn = document.querySelector('.btn-appointment');
+            const enquireButtons = document.querySelectorAll('.enquire-btn');
+            const closeModal = document.querySelector('.close-modal');
+            const modalTitle = modal.querySelector('h3');
+            const modalSubmitBtn = modal.querySelector('.submit-btn');
+            
+            // Function to open modal
+            const openModal = (title, buttonText) => {
+                modalTitle.textContent = title;
+                modalSubmitBtn.textContent = buttonText;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            };
+
+            // Function to close modal
+            const closeModalFunc = () => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            };
+
+            // Book Appointment button
+            if (appointmentBtn) {
+                appointmentBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal('Book an Appointment', 'Book Appointment');
+                });
+            }
+
+            // Enquire Now buttons
+            enquireButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const serviceName = button.closest('.service-card').querySelector('h4').textContent;
+                    openModal(`Enquire about ${serviceName}`, 'Send Enquiry');
+                });
+            });
+
+            // Close button
+            if (closeModal) {
+                closeModal.addEventListener('click', closeModalFunc);
+            }
+
+            // Click outside modal
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModalFunc();
+                }
+            });
+
+            // Form submission
+            const appointmentForm = modal.querySelector('.appointment-form');
+            if (appointmentForm) {
+                appointmentForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    alert('Your request has been submitted!');
+                    closeModalFunc();
+                });
+            }
+        });
+    </script>
+
+    <div id="appointment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Book an Appointment</h3>
+            <form class="appointment-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="How can we help you?" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Book Appointment</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
