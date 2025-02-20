@@ -808,4 +808,76 @@ body {
     .contact-item p {
         font-size: 14px;
     }
+}
+
+.footer {
+    background-color: #0A2647;
+    padding: 60px 0 40px;
+    color: white;
+}
+
+.footer-container {
+    max-width: 1512px;
+    margin: 0 auto;
+    padding: 0 48px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    margin-bottom: 60px;
+}
+
+.footer-column h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.footer-link {
+    color: white;
+    text-decoration: underline;
+    display: inline-block;
+    margin-top: 16px;
+}
+
+.contact-label {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.footer-column p {
+    margin-bottom: 16px;
+}
+
+.footer-logo {
+    text-align: center;
+}
+
+.footer-logo img {
+    height: 40px;
+    width: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .footer {
+        padding: 40px 0 30px;
+    }
 } 
