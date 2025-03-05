@@ -1124,7 +1124,7 @@ body {
 
 /* Make logo8 20% bigger */
 .client-logos img[src="Logos/logo8.png"] {
-    height: 96px; /* 80px * 1.2 = 96px */
+    height: 144px; /* 120px * 1.2 */
     transform: scale(1.2);
 }
 
@@ -1146,7 +1146,7 @@ body {
 
 @media (max-width: 768px) {
     .client-logos {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 20px;
     }
     
